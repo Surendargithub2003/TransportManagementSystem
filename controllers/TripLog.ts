@@ -36,7 +36,7 @@ const updateTrip = async ( req : Request , res : Response)=>{
         const {status} = req.body;
         const trip = await TripLog.findByIdAndUpdate(req.params.id, {status},{new : true})
         if(!trip){
-            return res.status(4040).json({message : 'Trip not found'});
+            return res.status(404).json({message : 'Trip not found'});
         }
         res.status(200).json({message : 'Trip Status updated',trip});
     }
