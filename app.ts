@@ -1,16 +1,19 @@
 import express from 'express';
 import mongoose from 'mongoose';
-
+import dotenv from "dotenv";
 import userRoutes from './routes/user.js';
+import vehicleRoutes from './routes/vehicle.js';
+import driverRoutes from './routes/driver.js';
+import tripRoutes from './routes/trip.js';
+import analyticsRoutes from './routes/trip.js';
 
+dotenv.config();
 
 const app = express();
 app.use(express.json());
 
 mongoose
-  .connect(
-    'mongodb+srv://surendarh3:tpm123@tpm.2xr5hws.mongodb.net/?retryWrites=true&w=majority&appName=tpm'
-  )
+  .connect(process.env.MONGO_URI as string)
   .then(() => {
     console.log('Connected to database!');
   })
@@ -18,7 +21,10 @@ mongoose
     console.log('Connection failed');
   });
 
-
-app.use('/api',userRoutes)
+app.use('/api',userRoutes);
+app.use('/api',vehicleRoutes);
+app.use('/api',driverRoutes);
+app.use('/api',tripRoutes);
+app.use('/api',analyticsRoutes);
 
 export default app;
