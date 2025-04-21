@@ -5,7 +5,7 @@ import userRoutes from './routes/user.js';
 import vehicleRoutes from './routes/vehicle.js';
 import driverRoutes from './routes/driver.js';
 import tripRoutes from './routes/trip.js';
-import analyticsRoutes from './routes/trip.js';
+import analyticsRoutes from './routes/analytics.js';
 
 dotenv.config();
 

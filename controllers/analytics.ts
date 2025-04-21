@@ -31,7 +31,7 @@ const avgFuel = async(req : Request , res : Response)=>{
                 }
             }
         ])
-        res.status(200).json(fuelUsage);
+        res.status(200).json({arr : fuelUsage});
     }
     catch (error:any) {
         res.status(500).json({ message: 'Error fetching fuel usage data', error: error.message });
