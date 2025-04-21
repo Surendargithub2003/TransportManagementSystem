@@ -1,0 +1,23 @@
+FROM node:18-alpine AS backend-build
+
+WORKDIR /app
+
+COPY backend/package*.json ./
+RUN npm ci
+
+
+COPY backend/ .
+
+
+FROM node:18-alpine
+
+WORKDIR /app
+
+
+COPY --from=backend-build /app .
+
+
+COPY --from=backend-build /app/node_modules ./node_modules
+
+EXPOSE 3000
+CMD ["npm", "run", "start:server"]
